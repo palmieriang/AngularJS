@@ -1,0 +1,18 @@
+body {
+	font-family: $body-font-family;
+	background-color: $body-bg-color;
+	color: $body-text-color;
+	margin: 20px;
+}
+
+h1 {
+	margin-bottom: 25px;
+}
+
+a {
+	text-decoration: none;
+}
+
+input {
+	width: 80%;
+}
