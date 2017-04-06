@@ -18,21 +18,11 @@
 	<!-- Style -->
 	<link rel="stylesheet" type="text/css" href="css/app.css">
 </head>
-<body>
-<div class="row" ng-controller="myController1">
+<body ng-controller="myController">
+<div class="row">
 	<div class="col-md-6">
 		<h1>Markdown</h1>
-		<textarea ng-model="snippet" cols="60" rows="10"></textarea>
-	</div>
-	<div class="col-md-6">
-		<h1>Preview</h1>
-		<div class="screen" ng-bind-html="snippet | markdown"></div>
-	</div>
-</div>
-<div class="row" ng-controller="myController2">
-	<div class="col-md-6">
-		<h1>Markdown</h1>
-		<textarea ng-model="snippet" cols="60" rows="10"></textarea>
+		<textarea ng-model="snippet" cols="60" rows="35"></textarea>
 	</div>
 	<div class="col-md-6">
 		<h1>Preview</h1>
