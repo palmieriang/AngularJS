@@ -4,6 +4,22 @@ myApp.controller("myController", function($scope) {
 
 	lat2 = 0;
 	lon2 = 0;
+	
+	// nearme();
+	// function nearme() {
+	//     if (navigator.geolocation) {
+	//         navigator.geolocation.getCurrentPosition(function (position) {
+
+	//                 var latitude = position.coords.latitude; 
+	//                 var longitude = position.coords.longitude;
+	//                 console.log(latitude);
+	//                 console.log(longitude);
+	// 				$scope.distance = getDistanceFromLatLonIn(latitude,longitude,lat2,lon2);
+	// 				$scope.$apply();
+	//         });
+	        
+	//     }
+	// }
 
 	getLocation();
 
