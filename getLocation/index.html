@@ -16,6 +16,10 @@
 </head>
 <body ng-app="myModule">
   <div class="container" ng-controller="myController">
-  <h1>{{test}}</h1>
+    <div class="front">
+      <h1>How far are you from </br > the Greenwich </br ><a href="https://en.wikipedia.org/wiki/Prime_meridian_(Greenwich)">Prime Meridian</a>?</h1>
+      <p><i class="fa fa-map-marker" aria-hidden="true"></i>  {{ distance | number : 2 }} Miles</p>
+      <p ng-if="loading">{{ loaderText }}</p>    
+    </div>
   </div>
 </body></html>
