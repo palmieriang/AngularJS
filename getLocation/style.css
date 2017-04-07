@@ -1,0 +1,37 @@
+body {
+  background-color: black;
+}
+
+.container {
+  margin-top: 20px;
+  background: url("http://www.rmg.co.uk/sites/default/files/styles/slider/public/Meridian_Line_L2119-007_slider.JPG?itok=ENmLrILy");
+  background-size: cover;
+  height: 600px;
+  position: relative;
+  border-radius: 3px;
+}
+
+.front {
+  position: absolute;
+  background-color: rgba(211, 211, 211, 0.6);
+  top: 8%;
+  left: 4%;
+  border-radius: 5px;
+  width: 30%;
+  text-align: center;
+}
+
+h1 {
+  font-size: 30px;
+  line-height: 2.5;
+  opacity: 1;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover { 
+  text-decoration: none;
+}
