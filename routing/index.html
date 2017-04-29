@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="Demo">
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+	<!-- Downloaded it instead of using the CDN link above -->
+	<!-- <script src="angular-route.min.js"></script> -->
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="script.js"></script>
+	<base href="/" />
+</head>
+<body>
+
+<table>
+	<tr>
+		<td colspan="2" class="header">
+			<h1>Website Header</h1>
+		</td>
+	</tr>
+	<tr>
+		<td class="leftMenu">
+			<!-- using html5Mode, I don't need the # -->
+<!-- 			<a href="#/home">Home</a>
+			<a href="#/courses">Courses</a>
+			<a href="#/students">Students</a> -->
+			<a href="home">Home</a>
+			<a href="courses">Courses</a>
+			<a href="students">Students</a>
+		</td>
+		<td class="mainContent">
+			<ng-view></ng-view>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" class="footer">
+			<b>Website Footer</b>
+		</td>
+	</tr>
+</table>
+
+</body>
+</html>
