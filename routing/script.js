@@ -3,15 +3,15 @@ var app = angular.module("Demo", ["ngRoute"])
 				 	$routeProvider.caseInsensitiveMatch = true;
 				 	$routeProvider
 				 		.when("/home", {
-				 			templateUrl: "exercises/angular.1.Routing/templates/home.html",
+				 			templateUrl: "templates/home.html",
 				 			controller: "homeController"
 				 		})
 				 		.when("/courses", {
-				 			templateUrl: "exercises/angular.1.Routing/templates/courses.html",
+				 			templateUrl: "templates/courses.html",
 				 			controller: "coursesController"
 				 		})
 				 		.when("/students", {
-				 			templateUrl: "exercises/angular.1.Routing/templates/students.html",
+				 			templateUrl: "templates/students.html",
 				 			controller: "studentsController",
 				 			resolve: {
 				 				studentsList: function($http) {
@@ -23,11 +23,11 @@ var app = angular.module("Demo", ["ngRoute"])
 				 			}
 				 		})
 				 		.when("/students/:ID", {
-				 			templateUrl: "exercises/angular.1.Routing/templates/studentDetails.html",
+				 			templateUrl: "templates/studentDetails.html",
 				 			controller: "studentDetailsController"
 				 		})
 				 		.when("/studentsSearch/:name?", {
-				 			templateUrl: "exercises/angular.1.Routing/templates/studentsSearch.html",
+				 			templateUrl: "templates/studentsSearch.html",
 				 			controller: "studentsSearchController"
 				 		})
 				 		.when("/test", {
@@ -122,23 +122,6 @@ var app = angular.module("Demo", ["ngRoute"])
 							$scope.student = response.data[0];
 				 		 })
 	            })
-				// .controller("studentsSearchController", function ($scope, $http, $routeParams) {
-				// 	if($routeParams.name) {
-				// 		$http.get("http://localhost/exercises/angular.1.Routing/lesson40.php?name="+$routeParams.name)
-				// 			 .then(function(response) {
-				// 				// console.log(response);
-				// 				// console.log(response.data[0]);
-				// 				$scope.students = response.data;
-				// 			 })
-				// 	} else {
-				// 	 	$http.get("http://localhost/exercises/angular.1.Routing/lesson25.php")
-				// 	 		 .then(function(response) {
-				// 				console.log(response.data);
-				// 				$scope.students = response.data;
-				// 	 		 })
-
-				// 	}
-				// })
 				.controller("studentsSearchController", function ($scope, $http, $routeParams) {
 				    if ($routeParams.name) {
 				        $http({
