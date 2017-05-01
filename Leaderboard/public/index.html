@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head>
+	<meta charset="utf-8">
+	<title>FreeCodeCamp Leaderboard</title>
+	<!-- Angular -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+	<!-- Font Awesome -->
+	<script src="https://use.fontawesome.com/736c59a21e.js"></script>
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<!-- Script -->
+	<script src="script.js"></script>
+	<!-- Style -->
+	<link rel="stylesheet" type="text/css" href="css/app.css">
+</head>
+<body ng-controller="myController">
+
+	<div class="container">
+
+		<div class="row">
+			<div class="col-md-12 col-xs-12">
+				<div class="tableHeader">Leaderboard</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12 col-xs-12">
+				<table>
+					<thead>
+						<tr class="camper">
+							<th>#</th>
+							<th>Camper Name</th>
+							<th class="number">Points in the past 30 days</th> 
+							<th class="number">All time points</th>
+						</tr>
+					</thead>
+					<tbody ng-repeat="camper in campers">
+						<tr class="camper">
+							<td>{{$index+1}}</td>
+							<td>
+								<a href="https://www.freecodecamp.com/{{camper.username}}" target="_blank">
+									<img src={{camper.img}}/>
+									<span>{{camper.username}}</span>
+								</a>
+							
+							
+							</td>
+							<td class="number">{{camper.recent}}</td>
+							<td class="number">{{camper.alltime}}</td>
+						</tr>
+					</tbody>
+				</table>	
+			</div>
+		</div>
+
+
+	</div>
+
+</body>
+</html>

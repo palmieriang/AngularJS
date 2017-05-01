@@ -1,0 +1,25 @@
+body {
+  margin: 15px;
+  background-color: #6f717c; }
+
+.tableHeader {
+  background-color: #F7C331;
+  font-size: 22px;
+  text-align: center;
+  padding: 5px; }
+
+table {
+  width: 100%; }
+
+.camper {
+  background-color: white;
+  padding: 5px;
+  border: 1px solid lightgrey; }
+
+.name .profileImg img {
+  width: 50px; }
+
+.number {
+  text-align: center; }
+
+/*# sourceMappingURL=app.css.map */
