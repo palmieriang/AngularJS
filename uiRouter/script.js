@@ -27,7 +27,7 @@ var app = angular.module("Demo", ["ui.router"])
 				 			controller: "studentParentController",
 				 			resolve: {
 				 				studentTotals: function($http) {
-				 					return $http.get("http://localhost/exercises/angular.3.UiRouter/lesson25.php")
+				 					return $http.get("http://localhost/exercises/angular.3.UiRouter/api.php?func=getStud")
 				 							.then(function(response) {
 				 								return response.data;
 				 							})
@@ -43,7 +43,7 @@ var app = angular.module("Demo", ["ui.router"])
 						 			controller: "studentsController",
 						 			resolve: {
 						 				studentsList: function($http) {
-						 					return $http.get("http://localhost/exercises/angular.3.UiRouter/lesson25.php")
+						 					return $http.get("http://localhost/exercises/angular.3.UiRouter/api.php?func=getStud")
 						 							.then(function(response) {
 						 								return response.data;
 						 							})
@@ -138,25 +138,35 @@ var app = angular.module("Demo", ["ui.router"])
 				 	// }
 				 })
 				.controller("studentDetailsController", function ($scope, $http, $stateParams) {
-					$http.get("http://localhost/exercises/angular.3.UiRouter/lesson30.php?ID="+$stateParams.ID)
+					$http.get("http://localhost/exercises/angular.3.UiRouter/api.php?func=id&ID="+$stateParams.ID)
 				 		 .then(function(response) {
-				    	console.log(response);
 							$scope.student = response.data[0];
 				 		 })
 				})
 				.controller("studentsSearchController", function ($scope, $http, $stateParams) {
 				    if ($stateParams.name) {
-				        $http({
-				            url: "http://localhost/exercises/angular.3.UiRouter/lesson40.php",
+
+						$http.get("http://localhost/exercises/angular.3.UiRouter/api.php?func=letters&name="+$stateParams.name)
+								 .then(function(response) {
+								 $scope.students = response.data;
+								 })
+
+						// $http({
+						//     url: "http://localhost/exercises/angular.3.UiRouter/api.php",
+						//     method: "get",
+						//     params: { func: 'letters' }
+						// }).then(function (response) {
+						//     $scope.students = response.data;
+						// 	console.log($scope.students);
+						// })
+
+				    } else {
+				    	$http({
+				            url: "http://localhost/exercises/angular.3.UiRouter/api.php",
 				            method: "get",
-				            params: { name: $stateParams.name }
+				            params: { func: 'getStud' }
 				        }).then(function (response) {
 				            $scope.students = response.data;
 				        })
-				    } else {
-				        $http.get("http://localhost/exercises/angular.3.UiRouter/lesson25.php")
-								.then(function (response) {
-								    $scope.students = response.data;
-								})
 				    }
 				})
