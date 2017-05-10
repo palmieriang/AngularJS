@@ -17,4 +17,12 @@ angular.module('NoteWrangler', ['ngRoute'])
 			.when('/users', {
 				templateUrl: 'templates/pages/users/index.html'
 			})
+			.when('/notes/new', {
+				templateUrl: 'templates/pages/notes/edit.html',
+				controller: 'NotesCreateController',
+				controllerAs: 'newNotesCtrl'
+			})
+			.otherwise({
+				redirectTo: '/notes'
+			});
 	}]);
