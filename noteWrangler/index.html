@@ -7,8 +7,37 @@
 	<link rel="stylesheet" type="text/css" href="css/application.css">
 </head>
 <body>
+  <div class="nav-wrapper has-dropdown">
+    <div class="nav-content">
+      <div class="wrapper">
+        <div class="nav-content-layout">
+          <div class="nav-list">
 
+            <a href="#/"
+            class="list-item"
+            ng-click="selected = 'notes'"
+            ng-class="{'active': selected == 'notes'}"> Notes </a>
 
+            <a href="#/users"
+            class="list-item"
+            ng-click="selected = 'users'"
+            ng-class="{'active': selected == 'users'}"> Users </a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-wrapper">
+    <div class="hero-content">
+      <div class="hero"></div>
+    </div>
+  </div>
+
+  <div class="main-wrapper">
+    <div ng-view></div>
+  </div>
 
 <!-- Load Js libs -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
@@ -18,6 +47,12 @@
 <script src="script.js"></script>
 
 <!-- Controllers -->
+<script src="js/controllers/notes-create-controller.js"></script>
+<script src="js/controllers/notes-edit-controller.js"></script>
+<script src="js/controllers/notes-index-controller.js"></script>
+<script src="js/controllers/notes-show-controller.js"></script>
+<script src="js/controllers/users-index-controller.js"></script>
+<script src="js/controllers/users-show-controller.js"></script>
 
 </body>
 </html>
