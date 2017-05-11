@@ -5,6 +5,7 @@
 	<title>Note Wrangler</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="css/application.css">
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.css" />
 </head>
 <body>
   <div class="nav-wrapper has-dropdown">
@@ -36,7 +37,8 @@
   </div>
 
   <div class="main-wrapper">
-    <div ng-view></div>
+    <!-- <div ng-view></div> -->
+    <ng-view></ng-view>
   </div>
 
 <!-- Load Js libs -->
@@ -44,7 +46,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
 
-<script src="script.js"></script>
+<script src="js/app.js"></script>
 
 <!-- Controllers -->
 <script src="js/controllers/notes-create-controller.js"></script>
