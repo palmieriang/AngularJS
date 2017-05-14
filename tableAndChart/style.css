@@ -1,0 +1,21 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+
+.container {
+	margin-bottom: 50px;
+}
+
+h1 {
+	margin-bottom: 40px;
+	text-align: center;
+}
+
+.container.charts button {
+	width: 100%;
+}
+
+input[type=file] {
+	display: flex;
+}
