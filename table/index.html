@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html ng-app="graphApp">
+<head>
+	<meta charset="utf-8">	
+	<title>Table and Chart</title>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js"></script>
+
+	<!-- Angular -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/c3-angular/1.3.1/c3-angular.min.js"></script>
+
+	<!-- Font Awesome -->
+	<script src="https://use.fontawesome.com/736c59a21e.js"></script>
+	<!-- Papa parse -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.3.2/papaparse.min.js"></script>
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<!-- Script -->
+	<script src="script.js"></script>
+	<!-- Style -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css" rel="stylesheet" type="text/css"/>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body ng-controller="GraphCtrl">
+
+	<!-- Choose file -->
+	<div class="container">
+		<h1>Choose a CSV file</h1>
+		<input type="file" accept=".csv" onchange="angular.element(this).scope().handleFiles(this.files)">		
+	</div>
+
+	<!-- Uploaded table -->
+	<div class="container" ng-if="columnValues">
+		<table class="table table-bordered">
+			<tbody>
+				<tr ng-repeat="cell in columnValues track by $index">
+				    <td>{{ cell[0] }}</td>
+				</tr>
+			</tbody>
+	    </table>
+	</div>
+
+	<!-- Select chart type -->
+	<div class="container charts" ng-if="columnValues">
+		<h1>Types of charts</h1>
+
+		<div class="row text-center">
+			<div class="col-md-3 col-xs-3">
+				<button type="button" class="btn btn-primary" ng-click="changeChart(2)">
+					<i class="fa fa-line-chart" aria-hidden="true"></i>
+					<span>Line chart</span>
+				</button>
+			</div>
+			<div class="col-md-3 col-xs-3">
+				<button type="button" class="btn btn-success" ng-click="changeChart(3)">
+					<i class="fa fa-pie-chart" aria-hidden="true"></i>
+					<span>Pie chart</span>
+				</button>
+			</div>
+			<div class="col-md-3 col-xs-3">
+				<button type="button" class="btn btn-info" ng-click="changeChart(4)">
+					<i class="fa fa-area-chart" aria-hidden="true"></i>
+					<span>Area chart</span>
+				</button>
+			</div>
+			<div class="col-md-3 col-xs-3">
+				<button type="button" class="btn btn-warning" ng-click="changeChart(5)">
+					<i class="fa fa-bar-chart" aria-hidden="true"></i>
+					<span>Bar chart</span>
+				</button>
+			</div>
+		</div>		
+	</div>
+	<!-- Display chart -->
+	<div class="container">
+
+		<!-- Line chart -->
+		<div ng-if="chartType == 2">
+			<c3chart bindto-id="chart1" show-labels="true">
+				<chart-column column-id="line1"
+				              column-name="Line 1"
+				              column-color="green"
+				              column-values="{{columnValues.join()}}"
+				              column-type="line"/>
+				<chart-points point-radius="5"
+				              show-point="true"
+				              point-expand-enabled="true"
+				              point-expand-radius="10"/>
+			</c3chart>
+		</div>
+
+		<!-- Pie chart -->
+		<div ng-if="chartType == 3">
+			<c3chart bindto-id="interactive-plot1-chart" show-labels="false">
+				<chart-column ng-repeat="cell in columnValues track by $index" column-id="{{ $index }}"
+				              column-name="Data {{ $index }}"
+				              column-values="{{ cell[0] }}"
+				              column-type="pie"/>
+			</c3chart>
+		</div>
+
+		<!-- Area chart -->
+		<div ng-if="chartType == 4">
+			<c3chart bindto-id="chart1">
+				<chart-column column-id="data 1"
+				      column-values="{{columnValues.join()}}"
+				      column-type="spline"/>
+			</c3chart>
+		</div>
+		
+		<!-- Bar chart -->
+		<div ng-if="chartType == 5">
+			<c3chart bindto-id="chart1" show-labels="true">
+				<chart-column column-id="bar1"
+				              column-name="Bar 1"
+				              column-color="green"
+				              column-values="{{columnValues.join()}}"
+				              column-type="bar"/>
+				<chart-bar ratio="0.8"/>
+			</c3chart>
+		</div>
+	</div>
+
+</body>
+</html>
