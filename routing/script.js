@@ -34,6 +34,16 @@ var app = angular.module("Demo", ["ngRoute"])
 				 			templateUrl: "exercises/angular.1.Routing/templates/login.html",
 				 			controller: "loginController"
 				 		})
+				 		.when('/profile', {
+				 			resolve: {
+				 				'check': function($location, $rootScope){
+				 					if(!$rootScope.loggedIn) {
+				 						$location.path('home');
+				 					}
+				 				}
+				 			},
+				 			templateUrl: "exercises/angular.1.Routing/templates/profile.html"
+				 		})
 				 		.when("/test", {
 				 			template: "<h1>Inline template in action</h1>",
 				 			controller: "homeController"
@@ -144,6 +154,13 @@ var app = angular.module("Demo", ["ngRoute"])
 								})
 				    }
 				})
-				.controller("loginController", function($scope) {
-
+				.controller("loginController", function($scope, $location, $rootScope) {
+					$scope.login = function() {
+						if($scope.username == 'admin' && $scope.password == 'admin') {
+							$rootScope.loggedIn = true;
+							$location.path('/profile');
+						} else {
+							alert('Error!');
+						}
+					}
 				})
