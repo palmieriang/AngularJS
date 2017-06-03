@@ -18,7 +18,7 @@ var app = angular.module("Demo", ["ngRoute"])
 								 	return $http.get("http://localhost/exercises/angular.1.Routing/lesson25.php")
 								 			.then(function(response) {
 												return response.data;
-							 				})				 					
+							 				})
 				 				}
 				 			}
 				 		})
@@ -29,6 +29,10 @@ var app = angular.module("Demo", ["ngRoute"])
 				 		.when("/studentsSearch/:name?", {
 				 			templateUrl: "templates/studentsSearch.html",
 				 			controller: "studentsSearchController"
+				 		})
+				 		.when("/login", {
+				 			templateUrl: "exercises/angular.1.Routing/templates/login.html",
+				 			controller: "loginController"
 				 		})
 				 		.when("/test", {
 				 			template: "<h1>Inline template in action</h1>",
@@ -139,4 +143,7 @@ var app = angular.module("Demo", ["ngRoute"])
 						        	console.log($scope.students);
 								})
 				    }
+				})
+				.controller("loginController", function($scope) {
+
 				})
