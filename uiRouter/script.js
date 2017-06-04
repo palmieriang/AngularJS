@@ -62,7 +62,7 @@ var app = angular.module("Demo", ["ui.router"])
 				 			views: {
 				 				studentData: {
 						 			templateUrl: "exercises/angular.3.UiRouter/templates/studentDetails.html",
-						 			controller: "studentDetailsController"				 					
+						 			controller: "studentDetailsController"
 				 				}
 				 			},
 				 		})
@@ -71,6 +71,11 @@ var app = angular.module("Demo", ["ui.router"])
 				 			url: "/:name",
 				 			templateUrl: "exercises/angular.3.UiRouter/templates/studentsSearch.html",
 				 			controller: "studentsSearchController"
+				 		})
+				 		.state("login", {
+				 			url: "/login",
+				 			templateUrl: "exercises/angular.3.UiRouter/templates/login.html",
+				 			controller: "loginController"
 				 		})
 				 		.state("test", {
 				 			url: "/test",
@@ -169,4 +174,7 @@ var app = angular.module("Demo", ["ui.router"])
 				            $scope.students = response.data;
 				        })
 				    }
+				})
+				.controller("loginController", function($scope) {
+
 				})
