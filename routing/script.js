@@ -31,7 +31,7 @@ var app = angular.module("Demo", ["ngRoute"])
 				 			controller: "studentsSearchController"
 				 		})
 				 		.when("/login", {
-				 			templateUrl: "exercises/angular.1.Routing/templates/login.html",
+				 			templateUrl: "templates/login.html",
 				 			controller: "loginController"
 				 		})
 				 		.when('/profile', {
@@ -42,7 +42,7 @@ var app = angular.module("Demo", ["ngRoute"])
 				 					}
 				 				}
 				 			},
-				 			templateUrl: "exercises/angular.1.Routing/templates/profile.html"
+				 			templateUrl: "templates/profile.html"
 				 		})
 				 		.when("/test", {
 				 			template: "<h1>Inline template in action</h1>",
