@@ -151,19 +151,22 @@ var app = angular.module("Demo", ["ui.router"])
 				.controller("studentsSearchController", function ($scope, $http, $stateParams) {
 				    if ($stateParams.name) {
 
-						$http.get("http://localhost/exercises/angular.3.UiRouter/api.php?func=letters&name="+$stateParams.name)
-								 .then(function(response) {
-								 $scope.students = response.data;
-								 })
+						// $http.get("http://localhost/exercises/angular.3.UiRouter/api.php?func=letters&name="+$stateParams.name)
+						// 		 .then(function(response) {
+						// 		 $scope.students = response.data;
+						// 		 })
 
-						// $http({
-						//     url: "http://localhost/exercises/angular.3.UiRouter/api.php",
-						//     method: "get",
-						//     params: { func: 'letters' }
-						// }).then(function (response) {
-						//     $scope.students = response.data;
-						// 	console.log($scope.students);
-						// })
+						$http({
+						    url: "http://localhost/exercises/angular.3.UiRouter/api.php",
+						    method: "get",
+						    params: { 
+						    	func: 'letters',
+						    	name: $stateParams.name
+						    }
+						}).then(function (response) {
+						    $scope.students = response.data;
+							console.log($scope.students);
+						})
 
 				    } else {
 				    	$http({
