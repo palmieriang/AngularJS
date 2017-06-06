@@ -68,7 +68,7 @@ var app = angular.module("Demo", ["ui.router"])
 				 		})
 				 		.state("studentsSearch", {
 				 			// we don't need the question mark to make it optional anymore
-				 			url: "/:name",
+				 			url: "studentsSearch/:name",
 				 			templateUrl: "exercises/angular.3.UiRouter/templates/studentsSearch.html",
 				 			controller: "studentsSearchController"
 				 		})
