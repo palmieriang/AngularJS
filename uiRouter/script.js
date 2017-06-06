@@ -77,6 +77,17 @@ var app = angular.module("Demo", ["ui.router"])
 				 			templateUrl: "exercises/angular.3.UiRouter/templates/login.html",
 				 			controller: "loginController"
 				 		})
+				 		.state("profile", {
+				 			url: "/profile",
+				 			templateUrl: "exercises/angular.3.UiRouter/templates/profile.html",
+				 			resolve: {
+				 				'check': function($location, $rootScope) {
+				 					if(!$rootScope.loggedIn) {
+				 						$location.path('/');
+				 					}
+				 				}
+				 			}
+				 		})
 				 		.state("test", {
 				 			url: "/test",
 				 			template: "<h1>Inline template in action</h1>",
@@ -178,6 +189,14 @@ var app = angular.module("Demo", ["ui.router"])
 				        })
 				    }
 				})
-				.controller("loginController", function($scope) {
-
+				.controller("loginController", function($scope, $rootScope, $location) {
+					$scope.login = function() {
+						if($scope.username == 'admin' && $scope.password == 'admin') {
+							$rootScope.loggedIn = true;
+							$location.path('/profile');
+							console.log('loggedIn');
+						} else {
+							alert('Error');
+						}
+					};
 				})
