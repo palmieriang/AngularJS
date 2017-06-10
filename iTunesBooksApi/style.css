@@ -1,0 +1,27 @@
+p {
+	margin: 0 0 10px;
+	font-size: 13px;
+	line-height: 1.8;
+}
+
+a {
+	color: #337ab8;
+}
+
+a:hover {
+	color: #23527c;
+	text-decoration: none;
+}
+
+.nav-tabs, .tab-content {
+	margin-top: 20px;
+}
+
+.description {
+	white-space: normal;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 5;
+	-webkit-box-orient: vertical;
+}
