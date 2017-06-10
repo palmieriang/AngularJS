@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head>
+    <meta charset="utf-8">
+    <title>Books List</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Style -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- Angular -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+</head>
+<body ng-controller="booksCtrl">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <ul class="nav nav-tabs">
+                    <li ng-class="{active: selectedTab == author}" ng-repeat="(author, data) in data">
+                        <a ng-href="#{{author}}" data-toggle="tab" ng-click="selectTab(author)">{{ data.tabLabel }}</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div id="{{author}}" ng-class="{active: selectedTab == author}" ng-repeat="(author, data) in data" class="tab-pane fade in">
+                        <div class="list-group" ng-repeat="book in data.results">
+                            <div class="list-group-item">
+                                <h1 class="h4 list-group-item-heading">
+                                    <a href="{{ book.trackViewUrl }}" target="_blank">{{ book.trackName }}</a>
+                                    <span class="label label-info">{{ book.price | currency : '£'}}</span>
+                                </h1>
+                                <p class="list-group-item-text" ng-class="{'description': ellipsis}" ng-click="ellipsis = !ellipsis" ng-bind-html="trustAsHtml(book.description)"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Font Awesome -->
+    <script src="https://use.fontawesome.com/736c59a21e.js"></script>
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- Script -->
+    <script src="script.js"></script>
+
+</body>
+</html>
