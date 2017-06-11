@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app="myModule">
+<head>
+	<meta charset="utf-8">
+	<title>To Do List</title>
+	<!-- Style -->
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<!-- Angular -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js"></script>
+</head>
+<body ng-controller="myController">
+
+	<h1>Add a task</h1>
+	<input type="text" ng-model="task" ng-keyup="searchEnter()">
+
+	<div id="tasksToShow">
+		<ul>
+			<li ng-repeat="oneTask in tasks">
+				<input type="checkbox" ng-model="oneTask.status">
+				<span class="done-{{oneTask.status}}"> {{oneTask.taskMessage}} </span>
+			</li>
+		</ul>
+	</div>
+
+	<!-- Script -->
+	<script src="script.js"></script>
+
+</body>
+</html>

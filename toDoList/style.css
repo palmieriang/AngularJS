@@ -1,0 +1,10 @@
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+span.done-true {
+    color: grey;
+    font-style: italic;
+    text-decoration: line-through;
+}
