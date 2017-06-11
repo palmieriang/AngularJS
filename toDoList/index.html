@@ -17,7 +17,7 @@
 		<ul>
 			<li ng-repeat="oneTask in tasks">
 				<input type="checkbox" ng-model="oneTask.status">
-				<span class="done-{{oneTask.status}}"> {{oneTask.taskMessage}} </span>
+				<span class="done-{{oneTask.status}}" ng-dblclick="editTask()" ng-keydown="enterAgain()" contenteditable="false"> {{oneTask.taskMessage}} </span>
 			</li>
 		</ul>
 	</div>
