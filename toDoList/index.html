@@ -3,6 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<title>To Do List</title>
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<!-- Style -->
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<!-- Angular -->
@@ -10,20 +12,40 @@
 </head>
 <body ng-controller="myController">
 
-	<h1>Add a task</h1>
-	<input type="text" ng-model="task" ng-keyup="searchEnter()">
-
-	<div id="tasksToShow">
-		<ul>
-			<li ng-repeat="oneTask in tasks track by $index">
-				<input type="checkbox" ng-model="oneTask.status">
-				<span class="done-{{oneTask.status}}" ng-model="oneTask.taskMessage" ng-dblclick="editTask(oneTask.taskMessage)" ng-keydown="enterAgain(oneTask.taskMessage)" contenteditable="false"> {{oneTask.taskMessage}} </span>
-				<span ng-click="removeTask($index)">
-					<i class="fa fa-times" aria-hidden="true"></i>
-					<!-- <i class="fa fa-trash-o" aria-hidden="true"></i> -->
-				</span>
-			</li>
-		</ul>
+	<div class="container">
+		<div class="header row text-center">
+			<h1>Add a task</h1>
+			<input type="text" ng-model="task" ng-keyup="searchEnter()">	
+		</div>
+		<br />
+		<div class="row">
+			<div class="col-md-12 col-xs-12">
+				<table class="table-bordered">
+					<tbody ng-repeat="oneTask in tasks track by $index">
+						<tr class="camper">
+							<td class="number">{{$index+1}}</td>
+							<td class="number">
+								<input type="checkbox" ng-model="oneTask.status">
+							</td>
+							<td class="name">
+								<span class="done-{{oneTask.status}}" ng-model="oneTask.taskMessage" ng-dblclick="editTask(oneTask.taskMessage)" ng-keydown="enterAgain(oneTask.taskMessage)" contenteditable="false"> {{oneTask.taskMessage}} </span>
+							</td>
+							<td class="number">
+								<span ng-click="removeTask($index)">
+									<i class="fa fa-times" aria-hidden="true"></i>
+								</span>
+							</td>
+						</tr>
+					</tbody>
+				</table>	
+			</div>
+		</div>
+<!-- 		<div class="row">
+			<div class="col-md-12 col-xs-12">
+				<div class="tableFooter">by <a href="www.angelopalmieri.com">Angelo Palmieri</a></div>
+			</div>
+		</div> -->
+		<br />
 	</div>
 
 	<!-- Font Awesome -->
