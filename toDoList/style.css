@@ -3,6 +3,11 @@ ul {
     padding-left: 0;
 }
 
+li {
+	padding: 10px;
+	border-bottom: 1px solid black;
+}
+
 span.done-true {
     color: grey;
     font-style: italic;

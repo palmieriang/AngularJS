@@ -41,4 +41,8 @@ angular.module('myModule', [])
 			$scope.editTask(msg);
 		};
 	};
+
+	$scope.removeTask = function(index) {
+		$scope.tasks.splice(index,1);
+	};
 });
