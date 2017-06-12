@@ -12,10 +12,11 @@
 </head>
 <body ng-controller="myController">
 
+	<br />
 	<div class="container">
 		<div class="header row text-center">
-			<h1>Add a task</h1>
-			<input type="text" ng-model="task" ng-keyup="searchEnter()">	
+			<h1>To Do List</h1>
+			<input type="text" ng-model="task" ng-keyup="searchEnter()" placeholder="Add a task">	
 		</div>
 		<br />
 		<div class="row">
@@ -40,12 +41,12 @@
 				</table>	
 			</div>
 		</div>
-<!-- 		<div class="row">
+		<br />
+		<div class="row text-center">
 			<div class="col-md-12 col-xs-12">
 				<div class="tableFooter">by <a href="www.angelopalmieri.com">Angelo Palmieri</a></div>
 			</div>
-		</div> -->
-		<br />
+		</div>
 	</div>
 
 	<!-- Font Awesome -->

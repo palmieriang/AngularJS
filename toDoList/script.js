@@ -19,8 +19,7 @@ angular.module('myModule', [])
 		$scope.tasks.push({'taskMessage': $scope.task, 'status': false});
 		console.log($scope.tasks);
 		$scope.task = ' ';
-		localStorage['tasksList'] = JSON.stringify($scope.tasks);
-		console.log(localStorage);
+		saveLocal($scope.tasks);
 	};
 
 	$scope.editTask = function(msg) {
@@ -31,7 +30,7 @@ angular.module('myModule', [])
 			}
 		}
 
-		localStorage['tasksList'] = JSON.stringify($scope.tasks);
+		saveLocal($scope.tasks);
 
 		event.target.contentEditable = event.target.contentEditable == "false" ? "true" : "false";
 	};
@@ -44,5 +43,11 @@ angular.module('myModule', [])
 
 	$scope.removeTask = function(index) {
 		$scope.tasks.splice(index,1);
+		saveLocal($scope.tasks);
 	};
+
+	function saveLocal(tasks) {
+		localStorage['tasksList'] = JSON.stringify(tasks);
+		console.log(localStorage);
+	}
 });
