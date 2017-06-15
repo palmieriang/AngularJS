@@ -15,7 +15,7 @@ var app = angular.module("Demo", ["ngRoute"])
 				 			controller: "studentsController",
 				 			resolve: {
 				 				studentsList: function($http) {
-								 	return $http.get("http://localhost/exercises/angular.1.Routing/lesson25.php")
+								 	return $http.get("http://localhost/exercises/angular.1.RoutingAPI/api.php?func=getStud")
 								 			.then(function(response) {
 												return response.data;
 							 				})
@@ -122,7 +122,7 @@ var app = angular.module("Demo", ["ngRoute"])
 				 		} else {
 				 			$location.url("/studentsSearch");
 				 		}
-				 		$http.get("http://localhost/exercises/angular.1.Routing/lesson40.php?name="+$routeParams.name)
+				 		$http.get("http://localhost/exercises/angular.1.RoutingAPI/api.php?func=letters&name="+$routeParams.name)
 				 		 .then(function(response) {
 							$scope.students = response.data;
 				 		 })
@@ -130,7 +130,7 @@ var app = angular.module("Demo", ["ngRoute"])
 				 })
 	            .controller("studentDetailsController", function ($scope, $http, $routeParams) {
 	            	console.log($routeParams.ID);
-	            	$http.get("http://localhost/exercises/angular.1.Routing/lesson30.php?ID="+$routeParams.ID)
+	            	$http.get("http://localhost/exercises/angular.1.RoutingAPI/api.php?func=id&ID="+$routeParams.ID)
 				 		 .then(function(response) {
 	                	console.log(response);
 							$scope.student = response.data[0];
@@ -139,15 +139,18 @@ var app = angular.module("Demo", ["ngRoute"])
 				.controller("studentsSearchController", function ($scope, $http, $routeParams) {
 				    if ($routeParams.name) {
 				        $http({
-				            url: "http://localhost/exercises/angular.1.Routing/lesson40.php",
+				            url: "http://localhost/exercises/angular.1.RoutingAPI/api.php",
 				            method: "get",
-				            params: { name: $routeParams.name }
+				            params: { 
+				            	func: 'letters'
+				            	name: $routeParams.name 
+				            }
 				        }).then(function (response) {
 				        	console.log(response.data);
 				            $scope.students = response.data;
 				        })
 				    } else {
-				        $http.get("http://localhost/exercises/angular.1.Routing/lesson25.php")
+				        $http.get("http://localhost/exercises/angular.1.RoutingAPI/api.php?func=getStud")
 								.then(function (response) {
 								    $scope.students = response.data;
 						        	console.log($scope.students);
