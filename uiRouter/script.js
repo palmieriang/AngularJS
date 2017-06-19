@@ -5,7 +5,7 @@ var app = angular.module("Demo", ["ui.router"])
 				 	$stateProvider
 				 		.state("home", {
 				 			url: "/home",
-				 			templateUrl: "exercises/angular.3.UiRouter/templates/home.html",
+				 			templateUrl: "templates/home.html",
 				 			controller: "homeController",
 				 			data: {
 				 				customData1: "Home State Custom Data 1",
@@ -14,7 +14,7 @@ var app = angular.module("Demo", ["ui.router"])
 				 		})
 				 		.state("courses", {
 				 			url: "/courses",
-				 			templateUrl: "exercises/angular.3.UiRouter/templates/courses.html",
+				 			templateUrl: "templates/courses.html",
 				 			controller: "coursesController",
 				 			data: {
 				 				customData1: "Courses State Custom Data 1",
@@ -23,7 +23,7 @@ var app = angular.module("Demo", ["ui.router"])
 				 		})
 				 		.state("studentParent", {
 				 			url: "/students",
-				 			templateUrl: "exercises/angular.3.UiRouter/templates/studentParent.html",
+				 			templateUrl: "templates/studentParent.html",
 				 			controller: "studentParentController",
 				 			resolve: {
 				 				studentTotals: function($http) {
@@ -39,7 +39,7 @@ var app = angular.module("Demo", ["ui.router"])
 				 			url: "/",
 				 			views: {
 				 				"studentData": {
-						 			templateUrl: "exercises/angular.3.UiRouter/templates/students.html",
+						 			templateUrl: "templates/students.html",
 						 			controller: "studentsController",
 						 			resolve: {
 						 				studentsList: function($http) {
@@ -51,7 +51,7 @@ var app = angular.module("Demo", ["ui.router"])
 						 			}
 						 		},
 						 		"totalData": {
-						 			templateUrl: "exercises/angular.3.UiRouter/templates/studentsTotal.html",
+						 			templateUrl: "templates/studentsTotal.html",
 						 			controller: "studentsTotalController"
 						 		}
 
@@ -61,7 +61,7 @@ var app = angular.module("Demo", ["ui.router"])
 				 			url: "/:ID",
 				 			views: {
 				 				studentData: {
-						 			templateUrl: "exercises/angular.3.UiRouter/templates/studentDetails.html",
+						 			templateUrl: "templates/studentDetails.html",
 						 			controller: "studentDetailsController"
 				 				}
 				 			},
@@ -69,17 +69,17 @@ var app = angular.module("Demo", ["ui.router"])
 				 		.state("studentsSearch", {
 				 			// we don't need the question mark to make it optional anymore
 				 			url: "studentsSearch/:name",
-				 			templateUrl: "exercises/angular.3.UiRouter/templates/studentsSearch.html",
+				 			templateUrl: "templates/studentsSearch.html",
 				 			controller: "studentsSearchController"
 				 		})
 				 		.state("login", {
 				 			url: "/login",
-				 			templateUrl: "exercises/angular.3.UiRouter/templates/login.html",
+				 			templateUrl: "templates/login.html",
 				 			controller: "loginController"
 				 		})
 				 		.state("profile", {
 				 			url: "/profile",
-				 			templateUrl: "exercises/angular.3.UiRouter/templates/profile.html",
+				 			templateUrl: "templates/profile.html",
 				 			resolve: {
 				 				'check': function($location, user) {
 				 					if(!user.isUserLoggedIn()) {
