@@ -81,9 +81,9 @@ var app = angular.module("Demo", ["ui.router"])
 				 			url: "/profile",
 				 			templateUrl: "exercises/angular.3.UiRouter/templates/profile.html",
 				 			resolve: {
-				 				'check': function($location, $rootScope) {
-				 					if(!$rootScope.loggedIn) {
-				 						$location.path('/');
+				 				'check': function($location, user) {
+				 					if(!user.isUserLoggedIn()) {
+				 						$location.path('home');
 				 					}
 				 				}
 				 			}
@@ -96,6 +96,30 @@ var app = angular.module("Demo", ["ui.router"])
 
 			 		// $locationProvider.html5Mode(true);
 				 })
+				.service('user', function() {
+					var username;
+					var loggedin = false;
+					var id;
+
+					this.setName = function(name) {
+						username = name;
+					};
+					this.getName = function() {
+						return username;
+					};
+					this.setID = function(userID) {
+						id = userID;
+					};
+					this.getID = function() {
+						return id;
+					};
+					this.userLoggedIn = function() {
+						loggedin = true;
+					};
+					this.isUserLoggedIn = function() {
+						return loggedin;
+					};
+				})
 				.controller("studentsTotalController", function ($scope, studentTotals) {
 				 	$scope.students = studentTotals;
 
@@ -189,14 +213,31 @@ var app = angular.module("Demo", ["ui.router"])
 				        })
 				    }
 				})
-				.controller("loginController", function($scope, $rootScope, $location) {
+				.controller("loginController", function($scope, $http, $location, user) {
 					$scope.login = function() {
-						if($scope.username == 'admin' && $scope.password == 'admin') {
-							$rootScope.loggedIn = true;
-							$location.path('/profile');
-							console.log('loggedIn');
-						} else {
-							alert('Error');
-						}
-					};
+
+						var username = $scope.username;
+						var password = $scope.password;
+
+						$http({
+							url: 'http://localhost/exercises/angular.1.RoutingAPI/api.php',
+							method: 'POST',
+							headers: {
+								'Content-Type' : 'application/x-www-form-urlencoded'
+							},
+							data: 'username='+username+'&password='+password+'&func=login'
+						}).then(function(response) {
+							console.log(response.data);
+							if(response.data.status == 'loggedin') {
+								user.userLoggedIn();
+								user.setName(response.data.user);
+								$location.path('/profile');
+							} else {
+								alert('Error! Invalid login.')
+							}
+						})
+					}
+				})
+				.controller("profileController", function($scope, user) {
+					$scope.user = user.getName();
 				})
