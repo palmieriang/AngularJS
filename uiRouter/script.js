@@ -101,9 +101,6 @@ var app = angular.module("Demo", ["ui.router"])
 					var loggedin = false;
 					var id;
 
-					this.setName = function(name) {
-						username = name;
-					};
 					this.getName = function() {
 						return username;
 					};
@@ -116,8 +113,14 @@ var app = angular.module("Demo", ["ui.router"])
 					this.userLoggedIn = function() {
 						loggedin = true;
 					};
-					this.isUserLoggedIn = function() {
-						return loggedin;
+					this.saveData = function(data) {
+						username = data.user;
+						id = data.id;
+						loggedin = true;
+						localStorage.setItem('login', JSON.stringify({
+							username: username,
+							id: id
+						}));
 					};
 				})
 				.controller("studentsTotalController", function ($scope, studentTotals) {
@@ -229,8 +232,7 @@ var app = angular.module("Demo", ["ui.router"])
 						}).then(function(response) {
 							console.log(response.data);
 							if(response.data.status == 'loggedin') {
-								user.userLoggedIn();
-								user.setName(response.data.user);
+								user.saveData(response.data);
 								$location.path('/profile');
 							} else {
 								alert('Error! Invalid login.')
