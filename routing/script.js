@@ -166,7 +166,7 @@ var app = angular.module("Demo", ["ngRoute"])
 				            url: "http://localhost/exercises/angular.1.RoutingAPI/api.php",
 				            method: "get",
 				            params: {
-				            	func: 'letters'
+				            	func: 'letters',
 				            	name: $routeParams.name
 				            }
 				        }).then(function (response) {
