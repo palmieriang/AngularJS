@@ -50,4 +50,5 @@ angular.module('myModule', [])
 		localStorage['tasksList'] = JSON.stringify(tasks);
 		console.log(localStorage);
 	}
+	
 });
