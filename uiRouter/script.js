@@ -264,4 +264,24 @@ var app = angular.module("Demo", ["ui.router"])
 				})
 				.controller("profileController", function($scope, user) {
 					$scope.user = user.getName();
+
+					$scope.newPass = function() {
+						var password = $scope.newPassword;
+						$http({
+							url: 'http://localhost/exercises/angular.1.RoutingAPI/api.php',
+							method: 'POST',
+							headers: {
+								'Content-Type' : 'application/x-www-form-urlencoded'
+							},
+							data: 'newPass='+password+'&func=login'
+						}).then(function(response) {
+							console.log(response.data);
+							if(response.data.status == 'loggedin') {
+								user.saveData(response.data);
+								$location.path('/profile');
+							} else {
+								alert('Error! Invalid login.')
+							}
+						})						
+					}
 				})
