@@ -72,6 +72,15 @@ var app = angular.module("Demo", ["ui.router"])
 				 			templateUrl: "templates/studentsSearch.html",
 				 			controller: "studentsSearchController"
 				 		})
+				 		.state("logout", {
+				 			url: "/logout",
+				 			resolve: {
+				 				deadResolve: function($location, user) {
+				 					user.clearData();
+				 					$location.path('/');
+				 				}
+				 			}
+				 		})
 				 		.state("login", {
 				 			url: "/login",
 				 			templateUrl: "templates/login.html",
@@ -80,6 +89,7 @@ var app = angular.module("Demo", ["ui.router"])
 				 		.state("profile", {
 				 			url: "/profile",
 				 			templateUrl: "templates/profile.html",
+				 			controller: "profileController",
 				 			resolve: {
 				 				'check': function($location, user) {
 				 					if(!user.isUserLoggedIn()) {
@@ -110,17 +120,29 @@ var app = angular.module("Demo", ["ui.router"])
 					this.getID = function() {
 						return id;
 					};
-					this.userLoggedIn = function() {
-						loggedin = true;
+					this.isUserLoggedIn = function() {
+						if (!!localStorage.getItem('login')) {
+							loggedin = true;
+							var data = JSON.parse(localStorage.getItem('login'));
+							username = data.username;
+							id = data.ID;
+						}
+						return loggedin;
 					};
 					this.saveData = function(data) {
 						username = data.user;
-						id = data.id;
+						id = data.ID;
 						loggedin = true;
 						localStorage.setItem('login', JSON.stringify({
 							username: username,
 							id: id
 						}));
+					};
+					this.clearData = function() {
+						localStorage.removeItem('login');
+						username = "";
+						id = "";
+						loggedin = false;
 					};
 				})
 				.controller("studentsTotalController", function ($scope, studentTotals) {
