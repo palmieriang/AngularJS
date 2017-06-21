@@ -68,7 +68,7 @@ var app = angular.module("Demo", ["ui.router"])
 				 		})
 				 		.state("studentsSearch", {
 				 			// we don't need the question mark to make it optional anymore
-				 			url: "studentsSearch/:name",
+				 			url: "/studentsSearch/:name",
 				 			templateUrl: "templates/studentsSearch.html",
 				 			controller: "studentsSearchController"
 				 		})
@@ -109,39 +109,39 @@ var app = angular.module("Demo", ["ui.router"])
 				.service('user', function() {
 					var username;
 					var loggedin = false;
-					var id;
+					var ID;
 
 					this.getName = function() {
 						return username;
 					};
 					this.setID = function(userID) {
-						id = userID;
+						ID = userID;
 					};
 					this.getID = function() {
-						return id;
+						return ID;
 					};
 					this.isUserLoggedIn = function() {
 						if (!!localStorage.getItem('login')) {
 							loggedin = true;
 							var data = JSON.parse(localStorage.getItem('login'));
 							username = data.username;
-							id = data.ID;
+							ID = data.ID;
 						}
 						return loggedin;
 					};
 					this.saveData = function(data) {
 						username = data.user;
-						id = data.ID;
+						ID = data.ID;
 						loggedin = true;
 						localStorage.setItem('login', JSON.stringify({
 							username: username,
-							id: id
+							ID: ID
 						}));
 					};
 					this.clearData = function() {
 						localStorage.removeItem('login');
 						username = "";
-						id = "";
+						ID = "";
 						loggedin = false;
 					};
 				})
@@ -165,43 +165,43 @@ var app = angular.module("Demo", ["ui.router"])
 						}
 					}
 				})
-				 .controller("homeController", function($scope, $state) {
-				 	$scope.message = "Home Page";
+				.controller("homeController", function($scope, $state) {
+					$scope.message = "Home Page";
 
-				 	$scope.homeCustomData1 = $state.current.data.customData1;
-				 	$scope.homeCustomData2 = $state.current.data.customData2;
+					$scope.homeCustomData1 = $state.current.data.customData1;
+					$scope.homeCustomData2 = $state.current.data.customData2;
 
-				 	$scope.coursesCustomData1 = $state.get("courses").data.customData1;
-				 	$scope.coursesCustomData2 = $state.get("courses").data.customData2;
-				 })
-				 .controller("coursesController", function($scope) {
-				 	$scope.courses = ["C#", "VB.NET", "SQL Server", "ASP.NET"];
-				 })
-				 .controller("studentsController", function(studentsList, $scope, $http, $state, $stateParams, $location, studentTotals) {
+					$scope.coursesCustomData1 = $state.get("courses").data.customData1;
+					$scope.coursesCustomData2 = $state.get("courses").data.customData2;
+				})
+				.controller("coursesController", function($scope) {
+					$scope.courses = ["C#", "VB.NET", "SQL Server", "ASP.NET"];
+				})
+				.controller("studentsController", function(studentsList, $scope, $http, $state, $stateParams, $location, studentTotals) {
 
-				 	$scope.searchStudent = function() {
-				 		$state.go("studentsSearch", { name: $scope.name });
-				 	}
+					$scope.searchStudent = function() {
+						$state.go("studentsSearch", { name: $scope.name });
+					}
 
-				 	$scope.reloadData = function() {
-				 		$state.reload();
-				 	}
+					$scope.reloadData = function() {
+						$state.reload();
+					}
 
-				 	$scope.students = studentsList;
-				 	$scope.total = studentTotals.length;
+					$scope.students = studentsList;
+					$scope.total = studentTotals.length;
 
-				 	// $scope.searchStudent = function(name) {
-				 	// 	if($scope.name) {
-				 	// 		$location.url("/studentsSearch/" + $scope.name);
-				 	// 	} else {
-				 	// 		$location.url("/studentsSearch");
-				 	// 	}
-				 	// 	$http.get("http://localhost/exercises/angular.3.UiRouter/lesson40.php?name="+$stateParams.name)
-				 	// 	 .then(function(response) {
-						// 	$scope.students = response.data;
-				 	// 	 })
-				 	// }
-				 })
+					// $scope.searchStudent = function(name) {
+					// 	if($scope.name) {
+					// 		$location.url("/studentsSearch/" + $scope.name);
+					// 	} else {
+					// 		$location.url("/studentsSearch");
+					// 	}
+					// 	$http.get("http://localhost/exercises/angular.3.UiRouter/lesson40.php?name="+$stateParams.name)
+					// 	 .then(function(response) {
+					// 	$scope.students = response.data;
+					// 	 })
+					// }
+				})
 				.controller("studentDetailsController", function ($scope, $http, $stateParams) {
 					$http.get("http://localhost/exercises/angular.3.UiRouter/api.php?func=id&ID="+$stateParams.ID)
 				 		 .then(function(response) {
@@ -257,31 +257,33 @@ var app = angular.module("Demo", ["ui.router"])
 								user.saveData(response.data);
 								$location.path('/profile');
 							} else {
-								alert('Error! Invalid login.')
+								alert('Error! Invalid login.');
 							}
 						})
 					}
 				})
-				.controller("profileController", function($scope, user) {
+				.controller("profileController", function($scope, user, $http) {
 					$scope.user = user.getName();
+					$scope.ID = user.getID();
+
+					console.log($scope.ID);
 
 					$scope.newPass = function() {
 						var password = $scope.newPassword;
 						$http({
-							url: 'http://localhost/exercises/angular.1.RoutingAPI/api.php',
+							url: 'http://localhost/exercises/angular.1.Routing/updatePass.php',
 							method: 'POST',
 							headers: {
 								'Content-Type' : 'application/x-www-form-urlencoded'
 							},
-							data: 'newPass='+password+'&func=login'
+							data: 'newPass='+password+'&ID='+user.getID()
 						}).then(function(response) {
 							console.log(response.data);
-							if(response.data.status == 'loggedin') {
-								user.saveData(response.data);
-								$location.path('/profile');
+							if(response.data.status == 'done') {
+								alert('Password Updated');
 							} else {
-								alert('Error! Invalid login.')
+								alert('CSRF');
 							}
-						})						
-					}
+						})
+					};
 				})
