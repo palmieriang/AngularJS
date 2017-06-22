@@ -269,12 +269,12 @@ var app = angular.module("Demo", ["ui.router"])
 						var username = user.getName();
 						var ID = user.getID();
 						$http({
-							url: 'http://localhost/exercises/angular.1.Routing/updatePass.php',
+							url: 'http://localhost/exercises/angular.1.RoutingAPI/api.php',
 							method: 'POST',
 							headers: {
 								'Content-Type' : 'application/x-www-form-urlencoded'
 							},
-							data: 'newPass='+password+'&ID='+ID+'&user='+username
+							data: 'newPass='+password+'&ID='+ID+'&user='+username+'&func=changePass'
 						}).then(function(response) {
 							console.log(response.data);
 							if(response.data.status == 'done') {
