@@ -263,20 +263,18 @@ var app = angular.module("Demo", ["ui.router"])
 					}
 				})
 				.controller("profileController", function($scope, user, $http) {
-					$scope.user = user.getName();
-					$scope.ID = user.getID();
-
-					console.log($scope.ID);
 
 					$scope.newPass = function() {
 						var password = $scope.newPassword;
+						var username = user.getName();
+						var ID = user.getID();
 						$http({
 							url: 'http://localhost/exercises/angular.1.Routing/updatePass.php',
 							method: 'POST',
 							headers: {
 								'Content-Type' : 'application/x-www-form-urlencoded'
 							},
-							data: 'newPass='+password+'&ID='+user.getID()
+							data: 'newPass='+password+'&ID='+ID+'&user='+username
 						}).then(function(response) {
 							console.log(response.data);
 							if(response.data.status == 'done') {
