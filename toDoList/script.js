@@ -35,6 +35,12 @@ angular.module('myModule', [])
 		event.target.contentEditable = event.target.contentEditable == "false" ? "true" : "false";
 	};
 
+	$scope.taskDone = function(status) {
+		if($scope.tasks.status != status) {
+			saveLocal($scope.tasks);
+		}
+	}
+
 	$scope.enterAgain = function(msg) {
 		if(event.which == 13 && msg != '') {
 			$scope.editTask(msg);

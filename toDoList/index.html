@@ -26,7 +26,7 @@
 						<tr class="camper">
 							<td class="number">{{$index+1}}</td>
 							<td class="number">
-								<input type="checkbox" ng-model="oneTask.status">
+								<input type="checkbox" ng-model="oneTask.status" ng-click="taskDone(oneTask.status)">
 							</td>
 							<td class="name">
 								<span class="done-{{oneTask.status}}" ng-model="oneTask.taskMessage" ng-dblclick="editTask(oneTask.taskMessage)" ng-keydown="enterAgain(oneTask.taskMessage)" contenteditable="false"> {{oneTask.taskMessage}} </span>
