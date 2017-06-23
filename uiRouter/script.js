@@ -81,6 +81,11 @@ var app = angular.module("Demo", ["ui.router"])
 				 				}
 				 			}
 				 		})
+				 		.state("register", {
+				 			url: "/register",
+				 			templateUrl: "templates/register.html",
+				 			controller: "registerController"
+				 		})
 				 		.state("login", {
 				 			url: "/login",
 				 			templateUrl: "templates/login.html",
@@ -284,4 +289,7 @@ var app = angular.module("Demo", ["ui.router"])
 							}
 						})
 					};
+				})
+				.controller("registerController", function($scope) {
+
 				})
