@@ -33,6 +33,16 @@
         {
             login();
         }
+
+        if($_POST["func"] == 'changePass')
+        {
+            changePass();
+        }
+
+        if($_POST["func"] == 'regist')
+        {
+            register();
+        }
     }
 
     function getAllEmployees() {
@@ -139,6 +149,30 @@
         }
 
         echo json_encode($response);
+    }
+
+    function changePass() {
+        global $conn;
+
+        $newPass = mysqli_real_escape_string($conn, $_POST['newPass']);
+        $username = mysqli_real_escape_string($conn, $_POST['user']);
+
+        // $sql = "UPDATE users SET password = '$newPass' WHERE username = '".$_SESSION['user']."'";
+        $sql = "UPDATE users SET password = '$newPass' WHERE username = '$username'";
+
+        $result = mysqli_query($conn, $sql);
+
+        if($result) {
+            $response['status'] = 'done';
+        } else {
+            $response['status'] = 'error';
+        }
+
+        echo json_encode($response);
+    }
+
+    function register() {
+        
     }
 
 ?>

@@ -290,6 +290,25 @@ var app = angular.module("Demo", ["ui.router"])
 						})
 					};
 				})
-				.controller("registerController", function($scope) {
+				.controller("registerController", function($scope, $http) {
 
+					$scope.register = function() {
+						var password = $scope.password;
+						var username = $scope.username;
+						$http({
+							url: 'http://localhost/exercises/angular.1.RoutingAPI/api.php',
+							method: 'POST',
+							headers: {
+								'Content-Type' : 'application/x-www-form-urlencoded'
+							},
+							data: 'username='+username+'&password='+password+'&func=regist'
+						}).then(function(response) {
+							console.log(response);
+							// if(response.data.status == 'done') {
+							// 	alert('Registerd');
+							// } else {
+							// 	alert('Error');
+							// }
+						})
+					};
 				})
