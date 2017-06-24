@@ -224,7 +224,7 @@ var app = angular.module("Demo", ["ui.router"])
 						$http({
 						    url: "http://localhost/exercises/angular.3.UiRouter/api.php",
 						    method: "get",
-						    params: { 
+						    params: {
 						    	func: 'letters',
 						    	name: $stateParams.name
 						    }
@@ -293,22 +293,26 @@ var app = angular.module("Demo", ["ui.router"])
 				.controller("registerController", function($scope, $http) {
 
 					$scope.register = function() {
-						var password = $scope.password;
 						var username = $scope.username;
-						$http({
-							url: 'http://localhost/exercises/angular.1.RoutingAPI/api.php',
-							method: 'POST',
-							headers: {
-								'Content-Type' : 'application/x-www-form-urlencoded'
-							},
-							data: 'username='+username+'&password='+password+'&func=regist'
-						}).then(function(response) {
-							console.log(response);
-							// if(response.data.status == 'done') {
-							// 	alert('Registerd');
-							// } else {
-							// 	alert('Error');
-							// }
-						})
+						var password = $scope.password;
+						var password2 = $scope.password2;
+
+						if (password === password2) {
+							$http({
+								url: 'http://localhost/exercises/angular.1.RoutingAPI/api.php',
+								method: 'POST',
+								headers: {
+									'Content-Type' : 'application/x-www-form-urlencoded'
+								},
+								data: 'username='+username+'&password='+password+'&func=regist'
+							}).then(function(response) {
+								console.log(response);
+								// if(response.data.status == 'done') {
+								// 	alert('Registerd');
+								// } else {
+								// 	alert('Error');
+								// }
+							})
+						}
 					};
 				})
