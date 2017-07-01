@@ -52,9 +52,16 @@ angular.module('myModule', [])
 		saveLocal($scope.tasks);
 	};
 
+	$scope.clearCompleted = function() {
+		$scope.tasks = $scope.tasks.filter(function(item) {
+			return !item.status;
+		})
+		saveLocal($scope.tasks);
+	}
+
 	function saveLocal(tasks) {
 		localStorage['tasksList'] = JSON.stringify(tasks);
 		console.log(localStorage);
 	}
-	
+
 });
