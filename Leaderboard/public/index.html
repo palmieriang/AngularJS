@@ -26,10 +26,18 @@
 
 		<div class="row">
 			<div class="col-md-12 col-xs-12">
-				<table class="table-bordered">
+				<table class="table table-bordered table-striped">
 					<thead>
+						<tr class="subheader">
+							<th colspan="2">
+								<p>Recent Campers</p>
+							</th>
+							<th colspan="2">
+								Search: <input type="text" name="" placeholder="Username" ng-model="searchText">
+							</th>
+						</tr>
 						<tr class="camper">
-							<th>#</th>
+							<th class="number">#</th>
 							<th>Camper Name</th>
 							<th class="number" ng-click="sortData('recent')">
 								Points in the past 30 days
@@ -41,9 +49,9 @@
 							</th>
 						</tr>
 					</thead>
-					<tbody ng-repeat="camper in campers | orderBy: sortColumn : reverseSort">
+					<tbody ng-repeat="camper in campers | filter:searchText | orderBy: sortColumn : reverseSort">
 						<tr class="camper">
-							<td>{{$index+1}}</td>
+							<td class="number">{{$index+1}}</td>
 							<td class="name">
 								<a href="https://www.freecodecamp.com/{{camper.username}}" target="_blank">
 									<img class="profileImg" src={{camper.img}}/>

@@ -1,7 +1,11 @@
 body
 	margin: 15px
 	background-color: #6f717c
-	font-family: Roboto
+
+.container
+	margin: 0 auto
+	padding: 0
+	max-width: 80%
 
 .tableHeader
 	background-color: #F7C331
@@ -15,11 +19,25 @@ body
 	text-transform: uppercase
 	font-family: arial
 
+.subheader
+	background-color: #ffffff
+
+	th
+		text-align: center
+
+	p
+		font-size: 15px
+		color: #436d7d
+		font-family: arial
+		margin: 0
+
 table
 	width: 100%
+	margin-bottom: 0 !important
 
 th, td
 	padding: 10px
+
 
 .camper
 	background-color: white
@@ -33,6 +51,7 @@ th, td
 
 .number
 	text-align: center
+	vertical-align: middle !important
 
 .arrow-up 
 	width: 0
@@ -52,7 +71,7 @@ th, td
 
 .tableFooter
 	background-color: #F7C331
-	font-size: 22px
+	font-size: 15px
 	text-align: center
 	padding: 10px
 	text-shadow: 1px 1px 1px #F7C331
