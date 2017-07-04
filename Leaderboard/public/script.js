@@ -4,7 +4,6 @@ myApp.controller("myController", function($scope, $http) {
 
 	$http.get("https://fcctop100.herokuapp.com/api/fccusers/top/recent")
 		.then(function (response) {
-			console.log(response.data);
 			$scope.campers = response.data;
 	})
 
