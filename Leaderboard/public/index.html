@@ -30,7 +30,11 @@
 					<thead>
 						<tr class="subheader">
 							<th colspan="2">
-								<p>Recent Campers</p>
+								<p>Campers</p>
+								<select name="singleSelect" ng-model="select" ng-change="onChange(value)">
+									<option ng-repeat="option in options" value="{{option.value}}">{{option.label}}</option>
+								</select>
+								{{select}}
 							</th>
 							<th colspan="2">
 								Search: <input type="text" name="" placeholder="Username" ng-model="searchText">
@@ -42,7 +46,7 @@
 							<th class="number" ng-click="sortData('recent')">
 								Points in the past 30 days
 								<div ng-class="getSortClass('recent')"></div>
-							</th> 
+							</th>
 							<th class="number" ng-click="sortData('alltime')">
 								All time points
 								<div ng-class="getSortClass('alltime')"></div>
@@ -54,7 +58,7 @@
 							<td class="number">{{$index+1}}</td>
 							<td class="name">
 								<a href="https://www.freecodecamp.com/{{camper.username}}" target="_blank">
-									<img class="profileImg" src={{camper.img}}/>
+									<img class="profileImg" ng-src={{camper.img}}/>
 									<span>{{camper.username}}</span>
 								</a>
 							</td>
@@ -62,7 +66,7 @@
 							<td class="number">{{camper.alltime}}</td>
 						</tr>
 					</tbody>
-				</table>	
+				</table>
 			</div>
 		</div>
 
